@@ -10,8 +10,14 @@ UiHandler::UiHandler(FileModelHandler* modelHandler, QMainWindow *parent) : QObj
     ui->treeViewLeft->installEventFilter(parent);
     ui->treeViewRight->installEventFilter(parent);
 
+    ui->treeViewLeft->setModelHandler(modelHandler);
+    ui->treeViewRight->setModelHandler(modelHandler);
+
     ui->treeViewLeft->setSortingEnabled(true);
     ui->treeViewRight->setSortingEnabled(true);
+
+    ui->treeViewLeft->setSide(ACTIVE_SIDE::LEFT);
+    ui->treeViewRight->setSide(ACTIVE_SIDE::RIGHT);
 
     ui->actionShowDate->setCheckable(true);
     ui->actionShowSize->setCheckable(true);
@@ -23,6 +29,9 @@ UiHandler::UiHandler(FileModelHandler* modelHandler, QMainWindow *parent) : QObj
     ui->treeViewLeft->setDragEnabled(true);
     ui->treeViewLeft->setDragDropMode(QAbstractItemView::DragDrop);
     ui->treeViewLeft->setDefaultDropAction(Qt::DropAction::MoveAction);
+
+    ui->treeViewLeft->setDropIndicatorShown(true);
+    ui->treeViewRight->setDropIndicatorShown(true);
 
     ui->treeViewRight->setDragEnabled(true);
     ui->treeViewRight->setDragDropMode(QAbstractItemView::DragDrop);

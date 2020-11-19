@@ -41,6 +41,9 @@ public:
     //Memorizes the type of operation (move), index of proceeded file and current side, where is the chosen file
     void initMove(QModelIndex index);
     void copyPath(QString src, QString dst);
+    QString getPathByIndex(QModelIndex index);
+    QModelIndex getIndexByFilePath(QString filePath);
+    void moveDragAndDrop(QModelIndex indexFrom, QModelIndex indexTo, ACTIVE_SIDE indexToSide);
 
 signals:
     void operationStart(QString operationName, int operationIndex);

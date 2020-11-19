@@ -18,7 +18,7 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QTreeView" name="treeViewLeft">
+       <widget class="QTreeViewWithProgressBar" name="treeViewLeft">
         <property name="dragEnabled">
          <bool>false</bool>
         </property>
@@ -31,7 +31,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QTreeView" name="treeViewRight">
+       <widget class="QTreeViewWithProgressBar" name="treeViewRight">
         <property name="dragEnabled">
          <bool>false</bool>
         </property>
@@ -138,6 +138,13 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QTreeViewWithProgressBar</class>
+   <extends>QTreeView</extends>
+   <header>qtreeviewwithprogressbar.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

@@ -97,6 +97,98 @@ void FileModelHandler::copyPath(QString src, QString dst)
     }
 }
 
+QString FileModelHandler::getPathByIndex(QModelIndex index)
+{
+    QFileSystemModel *currModel;
+    if(m_activeSide == ACTIVE_SIDE::LEFT)
+    {
+        currModel = m_modelLeft;
+    }
+    else
+    {
+        currModel = m_modelRight;
+    }
+
+    return currModel->filePath(index);
+}
+
+QModelIndex FileModelHandler::getIndexByFilePath(QString filePath)
+{
+    QFileSystemModel *currModel;
+    if(m_activeSide == ACTIVE_SIDE::LEFT)
+    {
+        currModel = m_modelLeft;
+    }
+    else
+    {
+        currModel = m_modelRight;
+    }
+    return currModel->index(filePath);
+}
+
+void FileModelHandler::moveDragAndDrop(QModelIndex indexFrom, QModelIndex indexTo, ACTIVE_SIDE indexToSide)
+{
+    QString str = "Moving in progress";
+    QString filePathFrom, filePathTo;
+    QFileSystemModel * processedModel, * currModel;
+    //processedModel == destination model
+    if(indexToSide == ACTIVE_SIDE::LEFT)
+    {
+        processedModel = m_modelLeft;
+    }
+    else
+    {
+        processedModel = m_modelRight;
+    }
+    //currModel == source model, the last clicked one. Is already known via m_activeSide
+    if(m_activeSide == ACTIVE_SIDE::LEFT)
+    {
+        currModel = m_modelLeft;
+    }
+    else
+    {
+        currModel = m_modelRight;
+    }
+    if(currModel->isDir(indexFrom))
+    {
+        filePathTo = processedModel->filePath(indexTo);
+        filePathFrom = currModel->filePath(indexFrom);
+        copyPath(filePathFrom, filePathTo);
+        currModel->remove(indexFrom);
+        QtConcurrent::run([=]{
+            emit operationStart(str, 0);
+            for(int i = 0; i < 10; ++i)
+            {
+                emit operationUpdate(0, 10);
+                QThread::msleep(300);
+            }
+            emit operationEnd(0);
+        });
+    }
+    else
+    {
+        filePathTo = processedModel->filePath(indexTo);
+        filePathFrom = currModel->filePath(indexFrom);
+        QFileInfo fi(filePathFrom);
+        filePathTo += QDir::separator()+ fi.fileName();
+        bool ret_val = QFile::copy(filePathFrom, filePathTo);
+        if (ret_val)
+        {
+            qDebug() << "Copy succeed";
+            currModel->remove(indexFrom);
+        }
+        QtConcurrent::run([=]{
+            emit operationStart(str, 0);
+            for(int i = 0; i < 10; ++i)
+            {
+                emit operationUpdate(0, 10);
+                QThread::msleep(300);
+            }
+            emit operationEnd(0);
+        });
+    }
+}
+
 void FileModelHandler::insert(QModelIndex index)
 {
     if(m_currActionType == ACTION_TYPE::NEITHER)

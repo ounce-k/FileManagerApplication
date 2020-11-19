@@ -20,12 +20,14 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     progressbarhandler.cpp \
+    qtreeviewwithprogressbar.cpp \
     uihandler.cpp
 
 HEADERS += \
     filemodelhandler.h \
     mainwindow.h \
     progressbarhandler.h \
+    qtreeviewwithprogressbar.h \
     uihandler.h
 
 FORMS += \
