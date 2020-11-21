@@ -36,9 +36,9 @@ void QTreeViewWithProgressBar::dropEvent(QDropEvent *e)
         QString fileName = url.toLocalFile();
         qDebug() << "Dropped file:" << fileName;
         m_modelHandler->moveDragAndDrop(
-                            m_modelHandler->getIndexByFilePath(fileName),
-                            index,
-                            m_side);
+                    m_modelHandler->getIndexByFilePath(fileName),
+                    index,
+                    m_side);
     }
 
 }

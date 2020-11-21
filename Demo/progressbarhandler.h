@@ -9,6 +9,7 @@
 class ProgressBarHandler : public QWidget
 {
     Q_OBJECT
+
 public:
     explicit ProgressBarHandler(QString str, QWidget *parent = nullptr);
 
@@ -17,7 +18,6 @@ public slots:
 
 private:
     QProgressBar *progressBar;
-
 };
 
 #endif // PROGRESSBARHANDLER_H

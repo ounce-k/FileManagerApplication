@@ -43,6 +43,7 @@ public:
     void copyPath(QString src, QString dst);
     QString getPathByIndex(QModelIndex index);
     QModelIndex getIndexByFilePath(QString filePath);
+    //handles drag and drop with progress bar, does moving files and dirs
     void moveDragAndDrop(QModelIndex indexFrom, QModelIndex indexTo, ACTIVE_SIDE indexToSide);
 
 signals:

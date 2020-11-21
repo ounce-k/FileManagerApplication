@@ -93,35 +93,20 @@ bool UiHandler::isDeletingConfirmed()
     }
 }
 
-bool UiHandler::isSameNameCopyConfirmed()
-{
-    QMessageBox::StandardButton reply;
-    reply = QMessageBox::information(ui->centralwidget, "Copy",
-                             "Do you want to copy selected item?",
-                             QMessageBox::Yes | QMessageBox::No);
-    if(reply == QMessageBox::Yes)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
 
 void UiHandler::setAttributeShown(ATTRIBUTE_NAME name)
 {
     switch(name)
     {
-        case ATTRIBUTE_NAME::DATE:
+    case ATTRIBUTE_NAME::DATE:
         ui->treeViewLeft->setColumnHidden(3, !ui->actionShowDate->isChecked());
         ui->treeViewRight->setColumnHidden(3, !ui->actionShowDate->isChecked());
         break;
-        case ATTRIBUTE_NAME::SIZE:
+    case ATTRIBUTE_NAME::SIZE:
         ui->treeViewLeft->setColumnHidden(1, !ui->actionShowSize->isChecked());
         ui->treeViewRight->setColumnHidden(1, !ui->actionShowSize->isChecked());
         break;
-        case ATTRIBUTE_NAME::TYPE:
+    case ATTRIBUTE_NAME::TYPE:
         ui->treeViewLeft->setColumnHidden(2, !ui->actionShowType->isChecked());
         ui->treeViewRight->setColumnHidden(2, !ui->actionShowType->isChecked());
         break;
@@ -144,7 +129,7 @@ void UiHandler::progressBarEnd(int operationIndex)
 
 void UiHandler::progressBarUpdate(int operationIndex, int progressValue)
 {
-     progressBarMap[operationIndex]->updateProgress(progressValue);
+    progressBarMap[operationIndex]->updateProgress(progressValue);
 }
 
 

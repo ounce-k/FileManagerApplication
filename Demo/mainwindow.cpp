@@ -7,6 +7,8 @@ MainWindow::MainWindow(QWidget *parent)
     m_modelHandler = new FileModelHandler("", this);
     m_uiHandler = new UiHandler(m_modelHandler, this);
 
+    setWindowTitle(tr("File Manager Application"));
+
     connect(m_modelHandler, SIGNAL(operationStart(QString, int)), m_uiHandler, SLOT(progressBarStart(QString, int)));
     connect(m_modelHandler, SIGNAL(operationEnd(int)), m_uiHandler, SLOT(progressBarEnd(int)));
     connect(m_modelHandler, SIGNAL(operationUpdate(int, int)), m_uiHandler, SLOT(progressBarUpdate(int, int)));

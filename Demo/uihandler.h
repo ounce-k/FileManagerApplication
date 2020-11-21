@@ -18,21 +18,20 @@ enum class ATTRIBUTE_NAME
 class UiHandler : public QObject
 {
     Q_OBJECT
+
 public:
     explicit UiHandler(FileModelHandler* modelHandler, QMainWindow *parent);
     ACTIVE_SIDE getActiveSide(QObject *treeObj);
     QModelIndex getModelIndex(ACTIVE_SIDE activeSide);
     //This function gets confirmation of deletion item from user using QMessageBox
     bool isDeletingConfirmed();
-    //This function gets confirmation of copy files with the same name from user using QMessageBox
-    bool isSameNameCopyConfirmed();
+    //hides or shows column, clicked by user
     void setAttributeShown(ATTRIBUTE_NAME name);
 
 public slots:
     void progressBarStart(QString operationame, int operationIndex);
     void progressBarEnd(int operationIndex);
     void progressBarUpdate(int operationIndex, int progressValue);
-
 
 private:
     Ui::MainWindow *ui;
