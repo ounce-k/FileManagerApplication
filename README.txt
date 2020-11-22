@@ -39,5 +39,6 @@ To run application:
 
 Before running app on Linux, install Qt. Run:
 >wget http://download.qt.io/official_releases/online_installers/qt-unified-linux-x64-online.run
->chmod u+x qt-unified-linux-x64-3.1.1-online
+>chmod u+x qt-unified-linux-x64-online.run
+>./qt-unified-linux-x64-online.run
 Install the latest Qt version.
